@@ -2,6 +2,7 @@ package com.ll.basic1.boundedContext.member.controller;
 
 import com.ll.basic1.base.rsData.RsData;
 import com.ll.basic1.boundedContext.member.service.MemberService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
