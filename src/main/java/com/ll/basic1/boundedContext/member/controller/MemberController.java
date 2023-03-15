@@ -1,6 +1,7 @@
 package com.ll.basic1.boundedContext.member.controller;
 
 import com.ll.basic1.base.rsData.RsData;
+import com.ll.basic1.boundedContext.member.Rq;
 import com.ll.basic1.boundedContext.member.entity.Member;
 import com.ll.basic1.boundedContext.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
@@ -48,14 +49,9 @@ public class MemberController {
     @GetMapping("/member/logout")
     @ResponseBody
     public RsData logout(HttpServletRequest req, HttpServletResponse resp) {
-        if (req.getCookies() != null) {
-            Arrays.stream(req.getCookies())
-                    .filter(cookie -> cookie.getName().equals("loginedMemberId"))
-                    .forEach(cookie -> {
-                        cookie.setMaxAge(0);
-                        resp.addCookie(cookie);
-                    });
-        }
+
+        Rq rq = new Rq(req, resp);
+        rq.removeCookie("loginedMemberId");
 
         return RsData.of("S-1", "로그아웃 되었습니다.");
     }
