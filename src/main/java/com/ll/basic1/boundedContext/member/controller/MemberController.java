@@ -19,6 +19,15 @@ public class MemberController {
     private final Rq rq;
 
     @GetMapping("/member/login")
+    public String showLogin() {
+        if (rq.isLogined()) {
+            return "user/member/alreadylogin.html";
+        }
+
+        return "user/member/login.html";
+    }
+
+    @GetMapping("/member/doLogin")
     @ResponseBody
     public RsData login(String username, String password) {
         if (username == null || username.trim().length() == 0) {
